@@ -12,7 +12,7 @@ app.use(express.json())
 async function run() {
     try {
         await client.connect()
-        // routes(app)
+        routes(app)
 
     } finally {
         // await client.close()
