@@ -6,7 +6,7 @@ const blogsRouter = require("express").Router()
 
 blogsRouter.get("/", getAllBlogs)
 
-blogsRouter.get("/my-blogs", verifyUser, getMyBlogs)
+blogsRouter.get("/my/:email", verifyUser, getMyBlogs)
 
 blogsRouter.post("/", verifyUser, saveBlog)
 
