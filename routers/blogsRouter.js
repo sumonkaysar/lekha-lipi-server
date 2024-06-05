@@ -1,4 +1,4 @@
-const { saveBlog, getOneBlog, updateBlog, deleteBlog, getAllBlogs, getMyBlogs } = require("../controllers/blogsController")
+const { saveBlog, getOneBlog, updateBlog, deleteBlog, getAllBlogs, getMyBlogs, searchBlogs } = require("../controllers/blogsController")
 const verifyUser = require("../middlewares/verifyUsers")
 
 
@@ -10,7 +10,7 @@ blogsRouter.get("/my/:email", verifyUser, getMyBlogs)
 
 blogsRouter.post("/", verifyUser, saveBlog)
 
-blogsRouter.get("/search", getOneBlog)
+blogsRouter.get("/search", searchBlogs)
 
 blogsRouter.get("/:id", verifyUser, getOneBlog)
 

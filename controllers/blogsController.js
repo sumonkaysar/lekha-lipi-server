@@ -42,8 +42,8 @@ const deleteBlog = async (req, res) => {
 }
 
 const searchBlogs = async (req, res) => {
-    const { name } = req.query
-    const blogs = await blogsCollection.updateOne({ name })
+    const { title } = req.query
+    const blogs = await blogsCollection.find({'title': {'$regex': title, '$options': 'i'}}).toArray()
     res.json(blogs)
 }
 
