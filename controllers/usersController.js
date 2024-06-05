@@ -3,7 +3,19 @@ const { usersCollection } = require("../mongoDBConfig/collections")
 const saveUser = async (req, res) => {
     const user = req.body
     const result = await usersCollection.insertOne(user)
-    res.json(result)
+    const token = jwt.sign({ user: { email: user.email } }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d' })
+    res.json({ result, token })
+}
+
+const saveProviderUser = async (req, res) => {
+    const user = req.body
+    const existedUser = await usersCollection.findOne({ email: user.email })
+    const token = jwt.sign({ user: { email: user.email } }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d' })
+    if (existedUser.email) {
+        return res.json({ token })
+    }
+    const result = await usersCollection.insertOne(user)
+    res.json({ result, token })
 }
 
 const getOneUser = async (req, res) => {
@@ -21,6 +33,7 @@ const updateUser = async (req, res) => {
 
 module.exports = {
     saveUser,
+    saveProviderUser,
     getOneUser,
     updateUser,
 }

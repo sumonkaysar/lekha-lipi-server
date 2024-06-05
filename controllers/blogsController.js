@@ -2,7 +2,6 @@ const { ObjectId } = require("mongodb")
 const { blogsCollection } = require("../mongoDBConfig/collections")
 
 const getAllBlogs = async (req, res) => {
-    const { id } = req.params
     const blogs = await blogsCollection.find({}).toArray()
     res.json(blogs)
 }
