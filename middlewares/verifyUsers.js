@@ -9,6 +9,7 @@ function verifyUser(req, res, next) {
     if (authHeader.split(" ")[0] === "Bearer") {
         const token = authHeader.split(" ")[1]
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function (err, decoded) {
+            console.log(err?.message, process.env.ACCESS_TOKEN_SECRET);
             if (err) {
                 return res.status(401).send({ status: 401, message: err.message })
             }
