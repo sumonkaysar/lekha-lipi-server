@@ -1,4 +1,3 @@
-
 const { getAllCategories } = require("../controllers/categoriesController")
 const verifyUser = require("../middlewares/verifyUsers")
 

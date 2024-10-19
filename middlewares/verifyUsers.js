@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken")
 
-
 function verifyUser(req, res, next) {
     const { authorization: authHeader } = req.headers
     if (!authHeader) {
@@ -12,6 +11,7 @@ function verifyUser(req, res, next) {
             if (err) {
                 return res.status(401).send({ status: 401, message: err.message })
             }
+            // console.log(decoded);
             req.decoded = decoded
             next()
         })
